@@ -1,0 +1,799 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><title>指數精靈｜第一人稱能量對決</title><style>
+:root{--navy:#16334b;--blue:#245caa;--gold:#ffd85c;--cream:#fffbea}*{box-sizing:border-box}body{margin:0;background:#e7f3e9;color:var(--navy);font-family:'Microsoft JhengHei',sans-serif}button{font:inherit;cursor:pointer;border:2px solid #234f6d;border-radius:12px;background:#fff;color:#193f59;padding:12px 18px;font-weight:bold;box-shadow:0 4px 0 #173e5833;touch-action:none;min-height:48px}button:hover:not(:disabled){background:#fff3b6}button:active,.held{transform:translateY(3px);box-shadow:none;background:#fce178}button:disabled{opacity:.45;cursor:default}button:focus-visible{outline:4px solid #e99721;outline-offset:3px}.primary{background:var(--gold)}.hidden{display:none!important}header{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:16px 24px;background:#fffefa;border-bottom:2px solid #b8d7d1}.brand{font-size:20px;font-weight:900;letter-spacing:2px}.brand small{font-size:11px;display:block;letter-spacing:3px;color:#497b88;margin-top:5px}.tools{display:flex;gap:8px;flex-wrap:wrap}.tools button{font-size:12px;padding:8px 12px;min-height:40px}main{max-width:1450px;margin:auto;padding:24px}.welcome{padding:38px;background:linear-gradient(115deg,#214e87,#2c8a95);color:#fff;border-radius:22px;position:relative;overflow:hidden}.welcome:after{content:'✦';position:absolute;right:5%;top:-45px;font-size:280px;color:#fff1;pointer-events:none}.welcome .tag{letter-spacing:3px;font-size:12px;color:#fff0a2}h1{font-size:clamp(34px,5vw,62px);margin:15px 0}h2{margin:0 0 12px}.welcome p{max-width:780px;line-height:1.9;color:#e5f6fb}.badges{display:flex;gap:10px;flex-wrap:wrap}.badges span{padding:7px 12px;border:1px solid #ffffff55;border-radius:20px;font-size:13px}.stages{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}.stage-card{border:2px solid #b4cec1;border-radius:18px;padding:24px;background:#fffef6;display:flex;flex-direction:column}.stage-card .icon{font-size:35px}.stage-card h2{font-size:24px;margin-top:12px}.stage-card p{font-size:14px;line-height:1.8;flex:1}.stage-card button{width:100%;margin-top:14px}.campaign{padding:14px 18px;background:#fff3bf;border:1px solid #dfc35b;border-radius:12px;margin-top:20px;line-height:1.7}.guide{font-size:14px;line-height:1.9;padding:20px;color:#456c76}.guide kbd{padding:2px 5px;background:#fff;border:1px solid #b1cac5;border-radius:4px}footer{font-size:12px;color:#557b7c;line-height:1.8;padding:20px 0}.hud{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:10px;margin-bottom:12px}.hud>div{border:2px solid #b8d3c6;border-radius:12px;background:#fffefa;padding:10px 14px}.hud small{display:block;font-size:11px;color:#50777b;margin-bottom:4px}.hud strong{font-size:23px}.danger{color:#c7364f!important}.question-panel{background:#fffefa;border:2px solid #a5bfc0;border-left:7px solid #ecbb42;border-radius:12px;padding:14px 20px;margin-bottom:12px}.question-panel .meta{font-size:11px;color:#58757b;display:flex;justify-content:space-between;gap:12px}.question-panel h2{font-size:clamp(20px,2vw,30px);margin:10px 0 4px;line-height:1.6}.world{position:relative;border:3px solid #16334b;border-radius:18px;overflow:hidden;background:#9cdbdd;height:clamp(300px,47vh,610px)}canvas{display:block;width:100%;height:100%;touch-action:none}.crosshair{position:absolute;left:50%;top:50%;width:22px;height:22px;border:2px solid #fff;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 4px #16334b}.crosshair:after{content:'';position:absolute;width:4px;height:4px;border-radius:50%;background:#ffdf6b;left:7px;top:7px}.aimed{border-color:#ffe570;box-shadow:0 0 12px #ffdc73}.scene-info{position:absolute;top:12px;left:14px;padding:6px 10px;background:#14394cc9;color:#fff;border-radius:7px;font-size:12px;pointer-events:none}.reticle-label{position:absolute;left:50%;top:calc(50% + 24px);transform:translateX(-50%);font-size:12px;color:#fff;text-shadow:0 2px 3px #123;pointer-events:none;white-space:nowrap}.shot-flash{position:absolute;inset:0;pointer-events:none;background:#fff8;opacity:0}.shot-flash.active{animation:flash .2s}.hitmarker{position:absolute;inset:0;pointer-events:none;border:10px solid transparent}.hitmarker.good{animation:good .5s}.hitmarker.bad{animation:bad .5s}.controls{display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:16px;padding:16px 0}.control-group{padding:12px;background:#d5e6dc;border-radius:14px}.control-group small{display:block;margin:0 0 8px;color:#365d68;font-size:12px}.dpad{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.dpad button{padding:10px 5px;font-size:14px;min-height:54px;user-select:none}.dpad .blank{visibility:hidden}.turnpad{display:grid;grid-template-columns:1fr 1fr;gap:8px}.turnpad button{padding:10px;font-size:14px;min-height:54px}.shoot-controls{display:grid;grid-template-columns:1fr 1fr;gap:8px}.shoot-controls #shoot{background:#ef775e;color:white;border-color:#aa4c45;font-size:21px;grid-row:span 2}.aimkeys{display:flex;gap:7px;margin-top:8px}.aimkeys button{flex:1;padding:7px;min-height:40px;font-size:12px}.status-line{min-height:24px;font-size:14px;color:#285b6d;margin:8px 0}.fraction{display:inline-flex;flex-direction:column;vertical-align:middle;line-height:1.05;text-align:center;font-family:Georgia,serif;margin:0 3px}.fraction span:first-child{border-bottom:1px solid;padding-bottom:3px}.fraction span:last-child{padding-top:3px}sup{font-size:.65em}dialog{color:#193f59;width:min(740px,94vw);border:3px solid #2a5971;border-radius:20px;background:#fffdf2;padding:28px;max-height:88vh;overflow:auto}dialog::backdrop{background:#163b59a8;backdrop-filter:blur(5px)}dialog p{line-height:1.9}dialog h2{font-size:28px}.dialog-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.review{padding:14px;background:#e7f2e9;border-radius:10px;margin-top:12px;line-height:1.8;font-size:14px}.score{font-size:56px;font-weight:bold;color:#235889}.overlay-tag{color:#3d7487;font-size:12px;letter-spacing:2px}.fullscreen main{max-width:none;padding:12px 20px}.fullscreen .world{height:44vh}.fullscreen .question-panel h2{font-size:32px}.fullscreen .controls button{min-height:62px;font-size:18px}.fullscreen .hud strong{font-size:28px}@keyframes flash{0%{opacity:.8}100%{opacity:0}}@keyframes good{20%{border-color:#8fff8980}100%{border-color:transparent}}@keyframes bad{20%{border-color:#ff536eaa}100%{border-color:transparent}}@media(max-width:760px){header{padding:12px;flex-wrap:wrap}.brand{font-size:17px}main{padding:12px}.welcome{padding:25px}.stages{grid-template-columns:1fr}.hud{grid-template-columns:repeat(2,1fr);gap:7px}.hud strong{font-size:19px}.question-panel{padding:10px 13px}.question-panel h2{font-size:20px}.world{height:350px}.controls{grid-template-columns:1fr 1fr;gap:8px}.controls .control-group:last-child{grid-column:1/-1}.dpad button,.turnpad button{min-height:49px}.shoot-controls{grid-template-columns:1.5fr 1fr 1fr}.shoot-controls #shoot{grid-row:auto}.control-group{padding:9px}.fullscreen .world{height:350px}.fullscreen .question-panel h2{font-size:23px}.fullscreen .controls button{font-size:14px;min-height:50px}}@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important}}
+.cannon-drag{position:absolute;left:59%;bottom:0;transform:translateX(-50%);width:170px;height:160px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;background:transparent;border:2px dashed #fff8;border-radius:25px 25px 0 0;box-shadow:none;color:#183e57;padding:0;z-index:3}.cannon-drag:active,.cannon-drag.dragging{transform:translateX(-50%);background:#ffdf6b25;cursor:grabbing;border-color:#ffe588;box-shadow:0 0 20px #ffdb6855}.cannon-drag:hover:not(:disabled){background:#ffffff10}.cannon-drag span{position:absolute;left:50%;top:5px;transform:translateX(-50%);white-space:nowrap;font-size:12px;background:#fff8d8ee;border-radius:10px;padding:5px 10px;pointer-events:none}.cannon-drag.dragging span{background:#ffe588}@media(max-width:760px){.cannon-drag{width:145px;height:145px}}
+</style></head><body><header><div class="brand">指數精靈 <small>EXPONENT EXPLORERS · 第一人稱能量對決</small></div><div class="tools"><button id="music" aria-pressed="true">♫ 背景音樂 開</button><button id="fx" aria-pressed="true">音效 開</button><button id="full">⛶ 大屏全螢幕</button><button id="help">操作說明</button><button id="home" class="hidden">返回選關</button></div></header><main>
+<section id="lobby"><div class="welcome"><div class="tag">七上數學 · 2-4 指數律</div><h1>向未知前進，<br>讓智慧發出光芒。</h1><p>帶上能量發射器，走進精靈訓練場。四隻原創元素精靈帶著不同答案，移動、瞄準，再以能量球選出正解！</p><div class="badges"><span>第一人稱移動</span><span>三關 × 10 題</span><span>每關 3 分鐘 · 2 條命</span><span>原創冒險配樂</span></div></div><div id="campaign" class="campaign"></div><div id="stages" class="stages"></div><div class="guide"><b>大屏、電腦、平板都能玩</b><br><kbd>W A S D</kbd> 移動 · <kbd>← →</kbd> 轉向 · 手指拖曳炮身瞄準 · <kbd>空白</kbd> 或點畫面射擊 · <kbd>1–4</kbd> 快速瞄準 · <kbd>Enter</kbd> 下一題<br>下方有大型觸控按鈕，支援按住連續移動。射空不扣命；射中錯誤答案才扣命。每題只計一次作答。</div><footer>題庫參考使用者提供的《1上課本CH2-4_指數律》簡報，以及《115國中數學1上實力評量》PDF第15–16頁。美術為以可愛收集精靈冒險為靈感的原創角色。音樂與音效均由 Web Audio 合成，無外部資源。進度只保存於目前瀏覽器。<button id="reset" style="font-size:11px;padding:6px 10px;margin-left:10px">重置通關紀錄</button></footer></section>
+<section id="play" class="hidden"><div class="hud"><div><small>訓練場 / 題目</small><strong id="stageLabel"></strong></div><div><small>剩餘生命 · 錯第2題失敗</small><strong id="lives"></strong></div><div><small>本關倒數 · 3分鐘</small><strong id="time"></strong></div><div><small>三關全通才成功</small><strong id="clears"></strong></div></div><div class="question-panel"><div class="meta"><span id="category"></span><span id="source"></span></div><h2 id="question"></h2></div><div class="world" id="world"><canvas id="view" aria-label="第一人稱精靈訓練場：使用下方控制鍵移動、轉向與射擊"></canvas><div class="scene-info">手指拖曳炮身瞄準 · 放開後按射擊</div><div id="crosshair" class="crosshair"></div><div id="aimLabel" class="reticle-label">尋找答案精靈</div><button id="cannonDrag" class="cannon-drag" aria-label="觸控拖曳炮身以瞄準，放開不射擊"><span>✥ 拖曳炮身瞄準</span></button><div id="flash" class="shot-flash"></div><div id="hit" class="hitmarker"></div></div><p class="status-line" id="status" role="status" aria-live="polite"></p><div class="controls"><div class="control-group"><small>移動 · 按住前進／後退／橫移</small><div class="dpad"><span class="blank"></span><button data-hold="w">W ↑ 前進</button><span class="blank"></span><button data-hold="a">A ← 左移</button><button data-hold="s">S ↓ 後退</button><button data-hold="d">D → 右移</button></div></div><div class="control-group"><small>視角 · 按住轉向 / 快速瞄準</small><div class="turnpad"><button data-hold="arrowleft">↶ 左轉</button><button data-hold="arrowright">右轉 ↷</button></div><div class="aimkeys"><button data-aim="0">1 / A</button><button data-aim="1">2 / B</button><button data-aim="2">3 / C</button><button data-aim="3">4 / D</button></div></div><div class="control-group"><small>能量球 · 命中答案才計分</small><div class="shoot-controls"><button id="shoot">◎ 射擊<br><small style="color:inherit">空白鍵</small></button><button id="hint">觀念提示</button><button id="next" disabled>下一題 ↵</button></div></div></div></section></main>
+<dialog id="modal"><div id="modalBody"></div><div class="dialog-actions" id="modalActions"></div></dialog>
+<script>
+'use strict';
+const BANK=[
+  [
+    {
+      "prompt": "(−1/2)^4 = ？",
+      "options": [
+        "−1/16",
+        "1/16",
+        "1/8",
+        "−2"
+      ],
+      "answerIndex": 1,
+      "value": "1/16",
+      "explanation": "四個負數相乘得正；分子與分母都取四次方：1^4/2^4 = 1/16。",
+      "source": "簡報第4頁",
+      "optionFeedback": [
+        "負數的偶數次方是正數。",
+        "四個負數相乘得正；分子與分母都取四次方：1^4/2^4 = 1/16。",
+        "四次方是連乘四次，不是乘以4或只算三次。",
+        "次方不是底數乘以指數。"
+      ],
+      "expr": "",
+      "hints": [
+        "先看負號是在括號內，還是在括號外。指數表示連乘的次數。",
+        "括號內負底數的偶數次方為正、奇數次方為負；分子分母都要乘方。"
+      ]
+    },
+    {
+      "prompt": "(−5/4)^3 = ？",
+      "options": [
+        "−125/64",
+        "−125/4",
+        "125/64",
+        "−15/12"
+      ],
+      "answerIndex": 0,
+      "value": "−125/64",
+      "explanation": "奇數個負數相乘得負；5^3=125、4^3=64，所以是 −125/64。",
+      "source": "簡報第5頁",
+      "optionFeedback": [
+        "奇數個負數相乘得負；5^3=125、4^3=64，所以是 −125/64。",
+        "分母4也要取三次方。",
+        "負數的奇數次方應為負。",
+        "次方是連乘，不能把分子分母乘以3。"
+      ],
+      "expr": "",
+      "hints": [
+        "先看負號是在括號內，還是在括號外。指數表示連乘的次數。",
+        "括號內負底數的偶數次方為正、奇數次方為負；分子分母都要乘方。"
+      ]
+    },
+    {
+      "prompt": "(−7/9)^2 = ？",
+      "options": [
+        "49/9",
+        "14/18",
+        "−49/81",
+        "49/81"
+      ],
+      "answerIndex": 3,
+      "value": "49/81",
+      "explanation": "平方作用於整個括號：負負得正，7^2/9^2=49/81。",
+      "source": "評量PDF第16頁",
+      "optionFeedback": [
+        "分母也要平方。",
+        "平方不是乘以2。",
+        "負數平方為正。",
+        "平方作用於整個括號：負負得正，7^2/9^2=49/81。"
+      ],
+      "expr": "",
+      "hints": [
+        "先看負號是在括號內，還是在括號外。指數表示連乘的次數。",
+        "括號內負底數的偶數次方為正、奇數次方為負；分子分母都要乘方。"
+      ]
+    },
+    {
+      "prompt": "(−8/3)^3 = ？",
+      "options": [
+        "−512/3",
+        "512/27",
+        "−512/27",
+        "−24/9"
+      ],
+      "answerIndex": 2,
+      "value": "−512/27",
+      "explanation": "三個負號的乘積為負；8^3=512、3^3=27。",
+      "source": "評量PDF第16頁",
+      "optionFeedback": [
+        "分母3也要立方。",
+        "奇數次方仍為負數。",
+        "三個負號的乘積為負；8^3=512、3^3=27。",
+        "不能把次方當作乘以3。"
+      ],
+      "expr": "",
+      "hints": [
+        "先看負號是在括號內，還是在括號外。指數表示連乘的次數。",
+        "括號內負底數的偶數次方為正、奇數次方為負；分子分母都要乘方。"
+      ]
+    },
+    {
+      "prompt": "−(2/3)^4 = ？",
+      "options": [
+        "−8/12",
+        "16/81",
+        "−16/81",
+        "−16/3"
+      ],
+      "answerIndex": 2,
+      "value": "−16/81",
+      "explanation": "先算括號內分數的四次方，外面的負號不在次方範圍內，所以為 −16/81。",
+      "source": "評量PDF第16頁概念改編",
+      "optionFeedback": [
+        "四次方表示連乘四次。",
+        "外部負號沒有被四次方，不能消失。",
+        "先算括號內分數的四次方，外面的負號不在次方範圍內，所以為 −16/81。",
+        "分母也要四次方。"
+      ],
+      "expr": "",
+      "hints": [
+        "先看負號是在括號內，還是在括號外。指數表示連乘的次數。",
+        "括號內負底數的偶數次方為正、奇數次方為負；分子分母都要乘方。"
+      ]
+    },
+    {
+      "prompt": "(−2/5)^4 的值是哪一個？",
+      "options": [
+        "−8/20",
+        "16/5",
+        "−16/625",
+        "16/625"
+      ],
+      "answerIndex": 3,
+      "value": "16/625",
+      "explanation": "負數的偶數次方為正，2^4=16、5^4=625。注意與 −(2/5)^4 不同。",
+      "source": "簡報第10頁改編",
+      "optionFeedback": [
+        "不是把分子分母乘以4。",
+        "分母5也要四次方。",
+        "負號在括號內，四次方後變正。",
+        "負數的偶數次方為正，2^4=16、5^4=625。注意與 −(2/5)^4 不同。"
+      ],
+      "expr": "",
+      "hints": [
+        "先看負號是在括號內，還是在括號外。指數表示連乘的次數。",
+        "括號內負底數的偶數次方為正、奇數次方為負；分子分母都要乘方。"
+      ]
+    },
+    {
+      "prompt": "(2/3)^2 × 9 = ？",
+      "options": [
+        "4",
+        "36",
+        "6",
+        "4/81"
+      ],
+      "answerIndex": 0,
+      "value": "4",
+      "explanation": "先算次方得4/9，再乘9得4。",
+      "source": "簡報第12頁",
+      "optionFeedback": [
+        "先算次方得4/9，再乘9得4。",
+        "先計算平方，再處理乘法。",
+        "不能以2/3乘以2取代平方。",
+        "題目是乘以9，不是除以9。"
+      ],
+      "expr": "",
+      "hints": [
+        "先看負號是在括號內，還是在括號外。指數表示連乘的次數。",
+        "括號內負底數的偶數次方為正、奇數次方為負；分子分母都要乘方。"
+      ]
+    },
+    {
+      "prompt": "4^2 ÷ (−2/3)^3 = ？",
+      "options": [
+        "−24",
+        "−54",
+        "−128/27",
+        "54"
+      ],
+      "answerIndex": 1,
+      "value": "−54",
+      "explanation": "4^2=16，(−2/3)^3=−8/27；16÷(−8/27)=16×(−27/8)=−54。",
+      "source": "簡報第13頁",
+      "optionFeedback": [
+        "先計算兩個次方，才能進行除法。",
+        "4^2=16，(−2/3)^3=−8/27；16÷(−8/27)=16×(−27/8)=−54。",
+        "除法要乘除數的倒數。",
+        "正數除以負數，答案為負。"
+      ],
+      "expr": "",
+      "hints": [
+        "先看負號是在括號內，還是在括號外。指數表示連乘的次數。",
+        "括號內負底數的偶數次方為正、奇數次方為負；分子分母都要乘方。"
+      ]
+    },
+    {
+      "prompt": "非零數 a 的 0 次方 a^0 等於多少？",
+      "options": [
+        "無法判斷",
+        "0",
+        "1",
+        "a"
+      ],
+      "answerIndex": 2,
+      "value": "1",
+      "explanation": "a≠0時，a^m÷a^m=1，也等於a^(m−m)=a^0，所以a^0=1。此規則不包含0^0。",
+      "source": "簡報第28頁",
+      "optionFeedback": [
+        "題目已限定a不為0，可以判斷。",
+        "0是指數，不表示整個值為0。",
+        "a≠0時，a^m÷a^m=1，也等於a^(m−m)=a^0，所以a^0=1。此規則不包含0^0。",
+        "a^1才等於a。"
+      ],
+      "expr": "",
+      "hints": [
+        "先看負號是在括號內，還是在括號外。指數表示連乘的次數。",
+        "括號內負底數的偶數次方為正、奇數次方為負；分子分母都要乘方。"
+      ]
+    },
+    {
+      "prompt": "【Boss】下列何者與 −(3/4)^6 不同？",
+      "options": [
+        "(−3/4)^6",
+        "−(27/64)^2",
+        "−729/4096",
+        "[−(3/4)^2]^3"
+      ],
+      "answerIndex": 0,
+      "value": "(−3/4)^6",
+      "explanation": "原式是負數 −729/4096；(−3/4)^6 是正729/4096，其他三式皆為負729/4096。",
+      "source": "評量PDF第15頁第1題",
+      "optionFeedback": [
+        "原式是負數 −729/4096；(−3/4)^6 是正729/4096，其他三式皆為負729/4096。",
+        "負號在平方外，值與原式相同。",
+        "這就是原式的值。",
+        "這一式負號整體取奇數次方，仍為負，與原式相同。"
+      ],
+      "expr": "",
+      "hints": [
+        "先看負號是在括號內，還是在括號外。指數表示連乘的次數。",
+        "括號內負底數的偶數次方為正、奇數次方為負；分子分母都要乘方。"
+      ]
+    }
+  ],
+  [
+    {
+      "prompt": "4^3 × 4^6 = 4^□，□ = ？",
+      "options": [
+        "9",
+        "3",
+        "46",
+        "18"
+      ],
+      "answerIndex": 0,
+      "value": "9",
+      "explanation": "同底數相乘，指數相加：3+6=9。",
+      "source": "簡報第17頁",
+      "optionFeedback": [
+        "同底數相乘，指數相加：3+6=9。",
+        "乘法時是指數相加，不是相乘或相減。",
+        "乘法時是指數相加，不是相乘或相減。",
+        "乘法時是指數相加，不是相乘或相減。"
+      ],
+      "expr": "",
+      "hints": [
+        "先辨認是同底數乘法、除法，還是加法。加法不能直接套指數律。",
+        "同底數相乘指數相加、相除相減；沒有標示的指數是1。"
+      ]
+    },
+    {
+      "prompt": "5^2 × 5^7 = 5^□，□ = ？",
+      "options": [
+        "14",
+        "5",
+        "10",
+        "9"
+      ],
+      "answerIndex": 3,
+      "value": "9",
+      "explanation": "同底數相乘：2+7=9。",
+      "source": "簡報第19頁",
+      "optionFeedback": [
+        "底數保留，將兩個指數相加。",
+        "底數保留，將兩個指數相加。",
+        "底數保留，將兩個指數相加。",
+        "同底數相乘：2+7=9。"
+      ],
+      "expr": "",
+      "hints": [
+        "先辨認是同底數乘法、除法，還是加法。加法不能直接套指數律。",
+        "同底數相乘指數相加、相除相減；沒有標示的指數是1。"
+      ]
+    },
+    {
+      "prompt": "(−3)^4 × (−3) = (−3)^□，□ = ？",
+      "options": [
+        "8",
+        "3",
+        "4",
+        "5"
+      ],
+      "answerIndex": 3,
+      "value": "5",
+      "explanation": "沒有寫指數表示一次方，4+1=5。",
+      "source": "簡報第18頁",
+      "optionFeedback": [
+        "單獨一個底數的指數是1，不是0或4。",
+        "單獨一個底數的指數是1，不是0或4。",
+        "單獨一個底數的指數是1，不是0或4。",
+        "沒有寫指數表示一次方，4+1=5。"
+      ],
+      "expr": "",
+      "hints": [
+        "先辨認是同底數乘法、除法，還是加法。加法不能直接套指數律。",
+        "同底數相乘指數相加、相除相減；沒有標示的指數是1。"
+      ]
+    },
+    {
+      "prompt": "11^6 ÷ 11^2 = 11^□，□ = ？",
+      "options": [
+        "8",
+        "12",
+        "3",
+        "4"
+      ],
+      "answerIndex": 3,
+      "value": "4",
+      "explanation": "同底數相除，指數相減：6−2=4。",
+      "source": "簡報第21頁",
+      "optionFeedback": [
+        "同底數相除應相減，不能相加、相乘或相除。",
+        "同底數相除應相減，不能相加、相乘或相除。",
+        "同底數相除應相減，不能相加、相乘或相除。",
+        "同底數相除，指數相減：6−2=4。"
+      ],
+      "expr": "",
+      "hints": [
+        "先辨認是同底數乘法、除法，還是加法。加法不能直接套指數律。",
+        "同底數相乘指數相加、相除相減；沒有標示的指數是1。"
+      ]
+    },
+    {
+      "prompt": "(−6)^5 ÷ (−6)^2 = (−6)^□，□ = ？",
+      "options": [
+        "2",
+        "10",
+        "3",
+        "7"
+      ],
+      "answerIndex": 2,
+      "value": "3",
+      "explanation": "同底數相除：5−2=3。",
+      "source": "簡報第22頁",
+      "optionFeedback": [
+        "括號內整體才是底數，指數仍相減。",
+        "括號內整體才是底數，指數仍相減。",
+        "同底數相除：5−2=3。",
+        "括號內整體才是底數，指數仍相減。"
+      ],
+      "expr": "",
+      "hints": [
+        "先辨認是同底數乘法、除法，還是加法。加法不能直接套指數律。",
+        "同底數相乘指數相加、相除相減；沒有標示的指數是1。"
+      ]
+    },
+    {
+      "prompt": "(−3/7)^2 × (−3/7)^3 = (−3/7)^□，□ = ？",
+      "options": [
+        "1",
+        "4",
+        "5",
+        "6"
+      ],
+      "answerIndex": 2,
+      "value": "5",
+      "explanation": "分數底數也適用同底數相乘：2+3=5。",
+      "source": "簡報第25頁",
+      "optionFeedback": [
+        "分數底數也適用指數相加，不能乘指數。",
+        "分數底數也適用指數相加，不能乘指數。",
+        "分數底數也適用同底數相乘：2+3=5。",
+        "分數底數也適用指數相加，不能乘指數。"
+      ],
+      "expr": "",
+      "hints": [
+        "先辨認是同底數乘法、除法，還是加法。加法不能直接套指數律。",
+        "同底數相乘指數相加、相除相減；沒有標示的指數是1。"
+      ]
+    },
+    {
+      "prompt": "(−2/3)^6 ÷ (−2/3)^4 = (−2/3)^□，□ = ？",
+      "options": [
+        "1",
+        "2",
+        "10",
+        "24"
+      ],
+      "answerIndex": 1,
+      "value": "2",
+      "explanation": "同底數相除：6−4=2。",
+      "source": "簡報第26頁",
+      "optionFeedback": [
+        "先確認底數相同，除法把指數相減。",
+        "同底數相除：6−4=2。",
+        "先確認底數相同，除法把指數相減。",
+        "先確認底數相同，除法把指數相減。"
+      ],
+      "expr": "",
+      "hints": [
+        "先辨認是同底數乘法、除法，還是加法。加法不能直接套指數律。",
+        "同底數相乘指數相加、相除相減；沒有標示的指數是1。"
+      ]
+    },
+    {
+      "prompt": "3^2 × 3^□ = 3^5，□ = ？",
+      "options": [
+        "7",
+        "10",
+        "3",
+        "2"
+      ],
+      "answerIndex": 2,
+      "value": "3",
+      "explanation": "由2+□=5，得到□=5−2=3。",
+      "source": "評量PDF第16頁",
+      "optionFeedback": [
+        "先列2+□=5，要求的是缺少的指數。",
+        "先列2+□=5，要求的是缺少的指數。",
+        "由2+□=5，得到□=5−2=3。",
+        "先列2+□=5，要求的是缺少的指數。"
+      ],
+      "expr": "",
+      "hints": [
+        "先辨認是同底數乘法、除法，還是加法。加法不能直接套指數律。",
+        "同底數相乘指數相加、相除相減；沒有標示的指數是1。"
+      ]
+    },
+    {
+      "prompt": "(−5)^16 ÷ (−5)^4 × (−5)^3 = (−5)^□，□ = ？",
+      "options": [
+        "12",
+        "23",
+        "15",
+        "9"
+      ],
+      "answerIndex": 2,
+      "value": "15",
+      "explanation": "由左至右，同底數相除減指數、相乘加指數：16−4+3=15。",
+      "source": "評量PDF第16頁",
+      "optionFeedback": [
+        "注意是16−4+3，最後的乘法要加3。",
+        "注意是16−4+3，最後的乘法要加3。",
+        "由左至右，同底數相除減指數、相乘加指數：16−4+3=15。",
+        "注意是16−4+3，最後的乘法要加3。"
+      ],
+      "expr": "",
+      "hints": [
+        "先辨認是同底數乘法、除法，還是加法。加法不能直接套指數律。",
+        "同底數相乘指數相加、相除相減；沒有標示的指數是1。"
+      ]
+    },
+    {
+      "prompt": "【Boss】2^9 + 2^9 + 2^9 + 2^9 = 2^a，a = ？",
+      "options": [
+        "11",
+        "36",
+        "12",
+        "9"
+      ],
+      "answerIndex": 0,
+      "value": "11",
+      "explanation": "四個相同數相加是4×2^9=2^2×2^9=2^11。不能直接把加法套成指數相加。",
+      "source": "評量PDF第15頁第8題",
+      "optionFeedback": [
+        "四個相同數相加是4×2^9=2^2×2^9=2^11。不能直接把加法套成指數相加。",
+        "先把四項加法提出共同因數，變成4×2^9。",
+        "先把四項加法提出共同因數，變成4×2^9。",
+        "先把四項加法提出共同因數，變成4×2^9。"
+      ],
+      "expr": "",
+      "hints": [
+        "先辨認是同底數乘法、除法，還是加法。加法不能直接套指數律。",
+        "同底數相乘指數相加、相除相減；沒有標示的指數是1。"
+      ]
+    }
+  ],
+  [
+    {
+      "prompt": "(2^3)^4 = 2^□，□ = ？",
+      "options": [
+        "81",
+        "7",
+        "12",
+        "24"
+      ],
+      "answerIndex": 2,
+      "value": "12",
+      "explanation": "次方的次方，指數相乘：3×4=12。",
+      "source": "簡報第30頁",
+      "optionFeedback": [
+        "不是3的4次方，而是3×4。",
+        "指數相加是同底數相乘的規則，不適用這裡。",
+        "次方的次方，指數相乘：3×4=12。",
+        "只需計算3×4。"
+      ],
+      "expr": "",
+      "hints": [
+        "先找括號層次、相同底數或相同指數，決定適用哪一條規則。",
+        "次方的次方把指數相乘；乘積的次方可分配給各因數。比較大小時注意底數是否小於1。"
+      ]
+    },
+    {
+      "prompt": "[(−3/7)^2]^3 = (−3/7)^□，□ = ？",
+      "options": [
+        "6",
+        "8",
+        "5",
+        "9"
+      ],
+      "answerIndex": 0,
+      "value": "6",
+      "explanation": "括號內次方再取次方，指數相乘：2×3=6。",
+      "source": "簡報第31頁",
+      "optionFeedback": [
+        "括號內次方再取次方，指數相乘：2×3=6。",
+        "不是2^3，應為2×3。",
+        "不是同底數兩項相乘，不能加指數。",
+        "外層3不需平方。"
+      ],
+      "expr": "",
+      "hints": [
+        "先找括號層次、相同底數或相同指數，決定適用哪一條規則。",
+        "次方的次方把指數相乘；乘積的次方可分配給各因數。比較大小時注意底數是否小於1。"
+      ]
+    },
+    {
+      "prompt": "(2×3)^4 = 2^△ × 3^□。△、□依序為？",
+      "options": [
+        "1、4",
+        "4、1",
+        "2、2",
+        "4、4"
+      ],
+      "answerIndex": 3,
+      "value": "4、4",
+      "explanation": "乘積的次方可分配到每個因數，兩個指數都為4。",
+      "source": "簡報第34頁",
+      "optionFeedback": [
+        "第一個因數2也要四次方。",
+        "第二個因數3也要四次方。",
+        "外層指數不是平均分成兩份。",
+        "乘積的次方可分配到每個因數，兩個指數都為4。"
+      ],
+      "expr": "",
+      "hints": [
+        "先找括號層次、相同底數或相同指數，決定適用哪一條規則。",
+        "次方的次方把指數相乘；乘積的次方可分配給各因數。比較大小時注意底數是否小於1。"
+      ]
+    },
+    {
+      "prompt": "5^5 × 2^5 = ？",
+      "options": [
+        "1000",
+        "50",
+        "1000000",
+        "100000"
+      ],
+      "answerIndex": 3,
+      "value": "100000",
+      "explanation": "相同指數可合併底數：(5×2)^5=10^5=100000。",
+      "source": "簡報第39頁",
+      "optionFeedback": [
+        "指數是5，不是3。",
+        "不是底數乘指數。",
+        "同指數合併底數後仍為5次方。",
+        "相同指數可合併底數：(5×2)^5=10^5=100000。"
+      ],
+      "expr": "",
+      "hints": [
+        "先找括號層次、相同底數或相同指數，決定適用哪一條規則。",
+        "次方的次方把指數相乘；乘積的次方可分配給各因數。比較大小時注意底數是否小於1。"
+      ]
+    },
+    {
+      "prompt": "(4/3)^3 × (3/2)^3 = ？",
+      "options": [
+        "2",
+        "8",
+        "16",
+        "64"
+      ],
+      "answerIndex": 1,
+      "value": "8",
+      "explanation": "同指數可合併：(4/3×3/2)^3=2^3=8。",
+      "source": "簡報第40頁",
+      "optionFeedback": [
+        "合併底數後仍需立方。",
+        "同指數可合併：(4/3×3/2)^3=2^3=8。",
+        "2^3是8，不是16。",
+        "合併後指數不相加成6。"
+      ],
+      "expr": "",
+      "hints": [
+        "先找括號層次、相同底數或相同指數，決定適用哪一條規則。",
+        "次方的次方把指數相乘；乘積的次方可分配給各因數。比較大小時注意底數是否小於1。"
+      ]
+    },
+    {
+      "prompt": "3^8 ÷ 3^5 × 2^3 = ？",
+      "options": [
+        "36",
+        "54",
+        "729",
+        "216"
+      ],
+      "answerIndex": 3,
+      "value": "216",
+      "explanation": "先算3^(8−5)=3^3，再與2^3合併：(3×2)^3=6^3=216。",
+      "source": "簡報第41頁",
+      "optionFeedback": [
+        "合併後是6的三次方，不是平方。",
+        "合併相同指數時底數相乘。",
+        "不能忽略因數2^3。",
+        "先算3^(8−5)=3^3，再與2^3合併：(3×2)^3=6^3=216。"
+      ],
+      "expr": "",
+      "hints": [
+        "先找括號層次、相同底數或相同指數，決定適用哪一條規則。",
+        "次方的次方把指數相乘；乘積的次方可分配給各因數。比較大小時注意底數是否小於1。"
+      ]
+    },
+    {
+      "prompt": "5^4 × 2^4 ÷ 10^3 = ？",
+      "options": [
+        "1",
+        "1000",
+        "100",
+        "10"
+      ],
+      "answerIndex": 3,
+      "value": "10",
+      "explanation": "前兩項合成10^4，再除以10^3，得到10^(4−3)=10。",
+      "source": "簡報第44頁",
+      "optionFeedback": [
+        "相除的指數差是1，不是0。",
+        "不能忽略除法。",
+        "合併後指數只減3，剩1。",
+        "前兩項合成10^4，再除以10^3，得到10^(4−3)=10。"
+      ],
+      "expr": "",
+      "hints": [
+        "先找括號層次、相同底數或相同指數，決定適用哪一條規則。",
+        "次方的次方把指數相乘；乘積的次方可分配給各因數。比較大小時注意底數是否小於1。"
+      ]
+    },
+    {
+      "prompt": "a=(−7/4)^2，b=(−7/4)^3，c=(−7/4)^4，大小關係為？",
+      "options": [
+        "a＞b＞c",
+        "c＞a＞b",
+        "a＞c＞b",
+        "b＞a＞c"
+      ],
+      "answerIndex": 1,
+      "value": "c＞a＞b",
+      "explanation": "b是負數，a、c是正數。7/4大於1，正的四次方比平方大，因此c＞a＞b。",
+      "source": "評量PDF第15頁第6題",
+      "optionFeedback": [
+        "先用奇偶性判斷b為負數，應排最後。",
+        "b是負數，a、c是正數。7/4大於1，正的四次方比平方大，因此c＞a＞b。",
+        "絕對值大於1，四次方大於平方。",
+        "b是負數，不可能最大。"
+      ],
+      "expr": "",
+      "hints": [
+        "先找括號層次、相同底數或相同指數，決定適用哪一條規則。",
+        "次方的次方把指數相乘；乘積的次方可分配給各因數。比較大小時注意底數是否小於1。"
+      ]
+    },
+    {
+      "prompt": "A=(5/6)^60，B=(5/6)^45，C=(5/6)^50，大小關係為？",
+      "options": [
+        "B＜C＜A",
+        "C＜A＜B",
+        "A＜B＜C",
+        "A＜C＜B"
+      ],
+      "answerIndex": 3,
+      "value": "A＜C＜B",
+      "explanation": "0＜5/6＜1，乘越多次會越小。60＞50＞45，所以A＜C＜B。",
+      "source": "評量PDF第16頁計算題",
+      "optionFeedback": [
+        "底數小於1時，指數越大值越小。",
+        "60大於50，所以A小於C。",
+        "50大於45，所以C小於B。",
+        "0＜5/6＜1，乘越多次會越小。60＞50＞45，所以A＜C＜B。"
+      ],
+      "expr": "",
+      "hints": [
+        "先找括號層次、相同底數或相同指數，決定適用哪一條規則。",
+        "次方的次方把指數相乘；乘積的次方可分配給各因數。比較大小時注意底數是否小於1。"
+      ]
+    },
+    {
+      "prompt": "【Boss】2×7^26 − (1/8)×(7^27 + 7^26) = ？",
+      "options": [
+        "7^27",
+        "7^25",
+        "7^26",
+        "0"
+      ],
+      "answerIndex": 2,
+      "value": "7^26",
+      "explanation": "先提共同因數：7^27+7^26=7^26×(7+1)=8×7^26。乘1/8後為7^26，所以2×7^26−7^26=7^26。",
+      "source": "評量PDF第16頁計算題",
+      "optionFeedback": [
+        "減去一倍，不會再乘以7。",
+        "這裡是同類項係數相減，不是除法減指數。",
+        "先提共同因數：7^27+7^26=7^26×(7+1)=8×7^26。乘1/8後為7^26，所以2×7^26−7^26=7^26。",
+        "2倍減1倍還剩1倍。"
+      ],
+      "expr": "",
+      "hints": [
+        "先找括號層次、相同底數或相同指數，決定適用哪一條規則。",
+        "次方的次方把指數相乘；乘積的次方可分配給各因數。比較大小時注意底數是否小於1。"
+      ]
+    }
+  ]
+];
+const STAGES=[{name:'草芽原野',topic:'分數乘方與正負號',icon:'🌱',desc:'認識分數次方、負數奇偶次方與零次方。'},{name:'潮汐遺跡',topic:'同底數指數律',icon:'💧',desc:'同底數相乘指數加，相除指數減；破解加法陷阱。'},{name:'星火高地',topic:'複合指數律',icon:'🔥',desc:'次方的次方、相同指數合併、比較大小與綜合挑戰。'}];
+const $=x=>document.getElementById(x),canvas=$('view'),g=canvas.getContext('2d');
+const KEY='exponent-fps-v1';let saved={best:[null,null,null]},saveOK=true;
+try{const d=JSON.parse(localStorage.getItem(KEY));if(Array.isArray(d?.best)&&d.best.length===3)saved.best=d.best.map(v=>Number.isInteger(v)&&v>=8&&v<=10?v:null)}catch(e){saveOK=false}
+let run=null,mode='lobby',keys=new Set(),width=1000,height=500,last=0,aimed=null,screenTargets=[],shot=0,drag=null,timer=null;
+let audio=null,musicTimer=null,musicOn=true,fxOn=true,noteIndex=0,nextNote=0;
+const colors=['#f4c958','#70cda1','#80b9f0','#ef998c'];
+const creatures=[{name:'雷絨',color:'#f3cb58',ears:1},{name:'芽狸',color:'#7dcc99',ears:2},{name:'泡靈',color:'#82bfe5',ears:0},{name:'焰狐',color:'#ed9b87',ears:1}];
+const worldMap=['1111111111111111','1000000000000001','1000000000000001','1000000000000001','1000000000000001','1000000000000001','1000000000000001','1020000000000201','1020000000000201','1000000000000001','1000000000000001','1000000000000001','1000000000000001','1000000000000001','1000000000000001','1111111111111111'];
+const positions=[{x:4.1,y:4.8},{x:6.7,y:3.6},{x:9.3,y:3.6},{x:11.9,y:4.8}];
+function math(s){return String(s).replace(/\^([0-9a-z□△]+)/g,'<sup>$1</sup>').replace(/(-?\d+)\/(\d+)/g,(_,a,b)=>'<span class="fraction"><span>'+a+'</span><span>'+b+'</span></span>')}
+function plain(s){return String(s).replace(/\^([0-9]+)/g,(_,n)=>[...n].map(v=>'⁰¹²³⁴⁵⁶⁷⁸⁹'[Number(v)]).join(''))}
+function storeSave(){try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){saveOK=false}}
+function dialog(title,body,actions){keys.clear();clearAimDrag();$('modalBody').innerHTML='<div class="overlay-tag">EXPONENT EXPLORERS</div><h2>'+title+'</h2>'+body;$('modalActions').replaceChildren();actions.forEach(a=>{const b=document.createElement('button');b.textContent=a.text;b.className=a.primary?'primary':'';b.onclick=()=>{$('modal').close();a.fn?.()};$('modalActions').append(b)});if(!$('modal').open)$('modal').showModal()}
+function initAudio(){try{audio??=new(window.AudioContext||window.webkitAudioContext)();audio.resume().catch(()=>{});if(!musicTimer){nextNote=audio.currentTime+.1;musicTimer=setInterval(scheduleMusic,100)}}catch(e){$('status').textContent='此瀏覽器暫無法啟用音訊，遊戲仍可進行。'}}
+function tone(f,t,d,v=.05,type='sine'){if(!audio)return;const o=audio.createOscillator(),a=audio.createGain();o.type=type;o.frequency.setValueAtTime(f,t);a.gain.setValueAtTime(.001,t);a.gain.linearRampToValueAtTime(v,t+.012);a.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(a);a.connect(audio.destination);o.start(t);o.stop(t+d+.02)}
+function scheduleMusic(){if(!audio||audio.state!=='running')return;if(!musicOn||mode==='lobby'){nextNote=audio.currentTime+.1;return}const melody=[523,659,784,659,587,659,880,784,659,523,587,659,784,659,587,392,440,523,659,523,587,659,784,880,784,659,587,523,440,392,440,494];while(nextNote<audio.currentTime+.2){tone(melody[noteIndex%32],nextNote,.21,.022,'triangle');if(noteIndex%4===0){const bass=[131,110,175,196][Math.floor(noteIndex/8)%4];tone(bass,nextNote,.65,.024);tone(bass*1.5,nextNote,.55,.012)}noteIndex++;nextNote+=.24}}
+function fx(kind){if(!fxOn)return;initAudio();if(!audio)return;const t=audio.currentTime;if(kind==='shoot'){tone(700,t,.1,.055,'sawtooth');tone(240,t+.03,.12,.04,'triangle')}if(kind==='hit'){[523,659,784,1047].forEach((n,i)=>tone(n,t+i*.07,.2,.075,'triangle'))}if(kind==='wrong'){tone(155,t,.3,.075,'sawtooth');tone(110,t+.1,.3,.05)}if(kind==='win'){[523,659,784,1047,1319].forEach((n,i)=>tone(n,t+i*.12,.4,.06))}}
+function lobby(){clearInterval(timer);timer=null;mode='lobby';run=null;keys.clear();$('lobby').classList.remove('hidden');$('play').classList.add('hidden');$('home').classList.add('hidden');const n=saved.best.filter(x=>x!==null).length;$('campaign').textContent=n===3?'🏅 三關全通！你已成為指數精靈訓練大師。':'訓練進度 '+n+' / 3 · 各關可自由選擇，全部通過才完成挑戰。'+(!saveOK?'目前瀏覽器無法儲存紀錄。':'');$('stages').replaceChildren();STAGES.forEach((s,i)=>{const a=document.createElement('article');a.className='stage-card';a.innerHTML='<span class="icon">'+s.icon+'</span><h2>'+s.name+'</h2><b>'+s.topic+'</b><p>'+s.desc+'</p><small>10題 · 3分鐘 · 2條命'+(saved.best[i]!==null?' · 已通關，最佳 '+saved.best[i]+'/10':' · 尚未通關')+'</small><p style="font-size:13px;color:#a33e4a">失敗條件：答錯第2題，或3分鐘歸零。<br>三關獨立，失敗不會清除其他關通關紀錄。</p>';const b=document.createElement('button');b.className='primary';b.textContent='進入第 '+(i+1)+' 關 →';b.onclick=()=>start(i);a.append(b);$('stages').append(a)})}
+function start(ch){clearInterval(timer);run={ch,q:0,lives:2,score:0,deadline:Date.now()+180000,answered:false,ended:false,mistakes:[],x:8,y:12,angle:-Math.PI/2,pitch:0,feedback:''};mode='play';$('lobby').classList.add('hidden');$('play').classList.remove('hidden');$('home').classList.remove('hidden');$('modal').close();keys.clear();initAudio();question();resize();timer=setInterval(tick,200);canvas.focus();}
+function remain(){return run?Math.max(0,Math.ceil((run.deadline-Date.now())/1000)):180}
+function tick(){if(!run||run.ended)return;hud();if(remain()<=0)finish(false,'時間已到，3 分鐘的訓練時限已結束。')}
+function hud(){if(!run)return;$('stageLabel').textContent=STAGES[run.ch].name+' '+(run.q+1)+'/10';$('lives').textContent='♥ '.repeat(run.lives)+'♡ '.repeat(2-run.lives);$('lives').classList.toggle('danger',run.lives<=1);const t=remain();$('time').textContent=Math.floor(t/60)+':'+String(t%60).padStart(2,'0');$('time').classList.toggle('danger',t<=60);$('clears').textContent=saved.best.filter(x=>x!==null).length+' / 3';$('next').disabled=!run.answered||run.ended;}
+function question(){run.answered=false;run.feedback='';run.hint=0;mode='play';$('next').disabled=true;$('hint').disabled=false;$('hint').textContent='觀念提示';$('category').textContent=STAGES[run.ch].topic+(run.q===9?' · 守關試煉':'');const q=BANK[run.ch][run.q];$('source').textContent=q.source;$('question').innerHTML=math(q.prompt);$('status').textContent='移動找角度，瞄準精靈並射擊；1–4可快速轉向對應答案。';hud();}
+function checkActive(){if(!run||run.ended||mode!=='play'||$('modal').open)return false;tick();return !run.ended}
+function shoot(){if(!checkActive()||run.answered)return;if(performance.now()-shot<220)return;shot=performance.now();fx('shoot');$('flash').classList.remove('active');void $('flash').offsetWidth;$('flash').classList.add('active');if(aimed===null){$('status').textContent='能量球射空了，沒有扣命。請將準星移到答案精靈身上。';return}answer(aimed)}
+function answer(index){if(!checkActive()||run.answered)return;const q=BANK[run.ch][run.q];run.answered=true;keys.clear();mode='feedback';$('hint').disabled=true;const correct=index===q.answerIndex;if(correct){run.score++;run.feedback='命中正解！'+q.explanation;fx('hit')}else{run.lives--;run.feedback='你射中了「'+q.options[index]+'」，正確答案是「'+q.options[q.answerIndex]+'」。'+q.optionFeedback[index]+' '+q.explanation;run.mistakes.push({q:run.q,selected:q.options[index],explanation:run.feedback});fx('wrong')}$('hit').className='hitmarker '+(correct?'good':'bad');setTimeout(()=>$('hit').className='hitmarker',650);hud();if(run.lives<=0){finish(false,'答錯第 2 題，2 條命已用完。');return}dialog(correct?'捕捉成功 · 概念掌握！':'能量偏移 · 看看哪裡錯了','<p>'+math(run.feedback)+'</p><p style="font-size:13px">時間持續計算，剩餘 '+run.lives+' 條命。</p>',[{text:run.q===9?'查看本關成績':'讀懂了 · 下一題 ↵',primary:true,fn:advance}]);}
+function advance(){if(!run||run.ended||!run.answered)return;tick();if(run.ended)return;$('modal').close();if(run.q===9){finish(true);return}run.q++;run.x=8;run.y=12;run.angle=-Math.PI/2;run.pitch=0;question()}
+function reviews(){return run.mistakes.map(m=>'<div class="review"><b>第 '+(m.q+1)+' 題</b><br>'+math(BANK[run.ch][m.q].prompt)+'<br>'+math(m.explanation)+'</div>').join('')}
+function finish(won,reason=''){if(!run||run.ended)return;run.ended=true;mode='result';keys.clear();clearInterval(timer);timer=null;$('next').disabled=true;if(won){saved.best[run.ch]=Math.max(saved.best[run.ch]??0,run.score);storeSave();fx('win')}const all=saved.best.every(x=>x!==null),ch=run.ch;dialog(won?(all?'三關全通 · 訓練大師誕生！':'本關通過！'):'本關挑戰失敗','<div class="score">'+run.score+' <span style="font-size:20px">/ 10 題正確</span></div><p>'+(won?(all?'恭喜完成三大訓練場！':'本關通關紀錄已保存。目前 '+saved.best.filter(x=>x!==null).length+' / 3 關通過；三關全過才算成功。'):reason+' 可以重新挑戰，或改選另一關。')+'</p>'+reviews(),[{text:'返回選關',primary:true,fn:lobby},{text:'重新挑戰本關',fn:()=>start(ch)}]);}
+function solid(x,y){return worldMap[Math.floor(y)]?.[Math.floor(x)]!=='0'}
+function move(dx,dy){const r=.22;if(!solid(run.x+dx+Math.sign(dx)*r,run.y)&&!solid(run.x+dx+Math.sign(dx)*r,run.y+r)&&!solid(run.x+dx+Math.sign(dx)*r,run.y-r))run.x+=dx;if(!solid(run.x,run.y+dy+Math.sign(dy)*r)&&!solid(run.x+r,run.y+dy+Math.sign(dy)*r)&&!solid(run.x-r,run.y+dy+Math.sign(dy)*r))run.y+=dy}
+function update(dt){if(mode!=='play'||!run||$('modal').open)return;let f=(keys.has('w')||keys.has('arrowup')?1:0)-(keys.has('s')||keys.has('arrowdown')?1:0),s=(keys.has('d')?1:0)-(keys.has('a')?1:0);const n=Math.hypot(f,s)||1;f/=n;s/=n;move((Math.cos(run.angle)*f-Math.sin(run.angle)*s)*dt*3,(Math.sin(run.angle)*f+Math.cos(run.angle)*s)*dt*3);run.angle+=((keys.has('arrowright')?1:0)-(keys.has('arrowleft')?1:0))*dt*1.7;}
+function castRay(a){const dx=Math.cos(a),dy=Math.sin(a);let mx=Math.floor(run.x),my=Math.floor(run.y),deltaX=Math.abs(1/dx),deltaY=Math.abs(1/dy),stepX=dx<0?-1:1,stepY=dy<0?-1:1,sideX=(dx<0?run.x-mx:mx+1-run.x)*deltaX,sideY=(dy<0?run.y-my:my+1-run.y)*deltaY,side=0;for(let i=0;i<64;i++){if(sideX<sideY){sideX+=deltaX;mx+=stepX;side=0}else{sideY+=deltaY;my+=stepY;side=1}if(worldMap[my]?.[mx]!=='0')break}return {distance:Math.max(.02,side===0?sideX-deltaX:sideY-deltaY),side,type:worldMap[my]?.[mx]||'1'}}
+function ellipse(x,y,rx,ry,color){g.fillStyle=color;g.beginPath();g.ellipse(x,y,rx,ry,0,0,Math.PI*2);g.fill()}
+function pet(cx,cy,size,index,t){const p=creatures[index],bob=Math.sin(t*2+index)*size*.02;g.save();g.translate(cx,cy+bob);g.scale(size,size);ellipse(0,.46,.35,.07,'#133e3b44');g.strokeStyle='#324f5b';g.lineWidth=.025;g.fillStyle=p.color;if(p.ears===1){g.beginPath();g.moveTo(-.25,-.15);g.lineTo(-.33,-.62);g.lineTo(-.07,-.29);g.moveTo(.12,-.28);g.lineTo(.34,-.6);g.lineTo(.3,-.1);g.fill();g.stroke()}if(p.ears===2){g.fillStyle='#40a77e';g.beginPath();g.ellipse(.06,-.4,.13,.3,.6,0,Math.PI*2);g.fill();g.stroke()}ellipse(0,.17,.3,.3,p.color);ellipse(0,-.13,.35,.3,p.color);ellipse(-.28,.2,.11,.16,p.color);ellipse(.28,.2,.11,.16,p.color);ellipse(-.17,.43,.13,.075,p.color);ellipse(.17,.43,.13,.075,p.color);ellipse(-.13,-.17,.046,.069,'#233c50');ellipse(.13,-.17,.046,.069,'#233c50');ellipse(-.14,-.19,.015,.021,'white');ellipse(.12,-.19,.015,.021,'white');ellipse(-.24,-.04,.055,.03,'#ed8d8688');ellipse(.24,-.04,.055,.03,'#ed8d8688');g.strokeStyle='#304958';g.lineWidth=.018;g.beginPath();g.arc(0,-.09,.065,.2,Math.PI-.2);g.stroke();ellipse(0,.15,.13,.12,'#fff6d1aa');if(index===2){g.fillStyle='#e0faff';g.beginPath();g.moveTo(-.12,-.36);g.quadraticCurveTo(.15,-.8,.2,-.31);g.fill()}g.restore()}
+function draw(t){if(!run)return;const horizon=height*.46+run.pitch*height;let sky=g.createLinearGradient(0,0,0,horizon);sky.addColorStop(0,['#7bc9d7','#82bddb','#d6b5dc'][run.ch]);sky.addColorStop(1,'#e4f5df');g.fillStyle=sky;g.fillRect(0,0,width,height);ellipse(width*.78,height*.16,40,40,'#fff4bb');g.fillStyle=['#87bca5','#819fbc','#b5a2b3'][run.ch];g.beginPath();g.moveTo(0,horizon);for(let x=0;x<=width+100;x+=100)g.lineTo(x,horizon-60-Math.sin(x*.009)*45);g.lineTo(width,horizon);g.fill();const ground=g.createLinearGradient(0,horizon,0,height);ground.addColorStop(0,['#b6d7a6','#bad8d4','#e1c8a7'][run.ch]);ground.addColorStop(1,['#70ac80','#72a8a9','#b98d6e'][run.ch]);g.fillStyle=ground;g.fillRect(0,horizon,width,height-horizon);g.strokeStyle='#ffffff18';for(let i=1;i<9;i++){const y=horizon+(height-horizon)*i*i/64;g.beginPath();g.moveTo(0,y);g.lineTo(width,y);g.stroke()}
+const fov=Math.PI/2.55,projection=width/(2*Math.tan(fov/2)),z=[],strip=4;for(let x=0;x<width;x+=strip){const da=Math.atan((x-width/2)/projection),r=castRay(run.angle+da),d=r.distance*Math.cos(da),wh=projection/d*1.25,y=horizon-wh*.5;z[Math.floor(x/strip)]=d;let shade=Math.max(0,1-d/24),base=r.type==='2'?[103,160,139]:[160,192,164];if(r.side)shade*=.8;g.fillStyle='rgb('+base.map(v=>Math.round(v*(.55+shade*.45))).join(',')+')';g.fillRect(x,y,strip+1,wh);g.fillStyle='#fff2';g.fillRect(x,y,strip+1,3);if(Math.floor((r.distance*(r.side?Math.cos(run.angle+da):Math.sin(run.angle+da))+(r.side?run.x:run.y))*3)%2===0){g.fillStyle='#1f594210';g.fillRect(x,y,strip+1,wh)}}
+screenTargets=[];const q=BANK[run.ch][run.q];positions.map((p,i)=>({...p,i,d:Math.hypot(p.x-run.x,p.y-run.y)})).sort((a,b)=>b.d-a.d).forEach(p=>{let da=Math.atan2(p.y-run.y,p.x-run.x)-run.angle;da=Math.atan2(Math.sin(da),Math.cos(da));if(Math.abs(da)>fov*.8||p.d<.3)return;const depth=p.d*Math.cos(da),cx=width/2+Math.tan(da)*projection,size=Math.min(height*1.9,projection/depth*1.45),cy=horizon+projection/depth*.05;if(cx<0||cx>width||depth>(z[Math.min(z.length-1,Math.max(0,Math.floor(cx/strip)))]||100))return;pet(cx,cy,size,p.i,t);const labelY=cy-size*.78,font=Math.min(27,Math.max(15,size*.19)),label=String.fromCharCode(65+p.i)+' · '+plain(q.options[p.i]);g.font='bold '+font+'px "Microsoft JhengHei",sans-serif';const tw=Math.max(70,g.measureText(label).width+24);g.fillStyle=colors[p.i];g.strokeStyle='#284f65';g.lineWidth=2;g.beginPath();g.roundRect(cx-tw/2,labelY,tw,font+18,8);g.fill();g.stroke();g.fillStyle='#16384d';g.textAlign='center';g.fillText(label,cx,labelY+font+4);g.font='bold '+Math.max(11,font*.65)+'px sans-serif';g.fillStyle='#fff';g.fillText(creatures[p.i].name,cx,cy+size*.64);screenTargets.push({index:p.i,x:cx-size*.38,y:cy-size*.48,w:size*.76,h:size*.99,d:p.d})});
+aimed=null;for(const p of [...screenTargets].sort((a,b)=>a.d-b.d)){if(width/2>=p.x&&width/2<=p.x+p.w&&height/2>=p.y&&height/2<=p.y+p.h){aimed=p.index;break}}$('crosshair').classList.toggle('aimed',aimed!==null);$('aimLabel').textContent=aimed===null?'移動／轉向尋找答案':String.fromCharCode(65+aimed)+' · '+q.options[aimed]+' 〔可射擊〕';
+// First-person energy emitter and recoil.
+const recoil=Math.max(0,1-(performance.now()-shot)/180);g.save();g.translate(width*.59,height+recoil*15);g.rotate(-.16);g.fillStyle='#f7e0b5';g.beginPath();g.roundRect(-25,-75,55,130,20);g.fill();g.fillStyle='#fef5d9';g.strokeStyle='#245274';g.lineWidth=4;g.beginPath();g.roundRect(-68,-130,108,88,25);g.fill();g.stroke();g.fillStyle='#e77c69';g.fillRect(-64,-100,99,20);ellipse(-15,-130,30,16,'#315c7e');ellipse(-15,-132,19,10,'#b8fbdf');g.restore();drawMap();}
+function drawMap(){const s=4,ox=width-84,oy=height-84;g.fillStyle='#153e4bbf';g.fillRect(ox-5,oy-5,74,74);for(let y=0;y<16;y++)for(let x=0;x<16;x++){if(worldMap[y][x]!=='0'){g.fillStyle='#c6dfca';g.fillRect(ox+x*s,oy+y*s,s,s)}}positions.forEach((p,i)=>{g.fillStyle=colors[i];g.fillRect(ox+p.x*s-2,oy+p.y*s-2,4,4)});ellipse(ox+run.x*s,oy+run.y*s,3,3,'white');g.strokeStyle='#fff';g.beginPath();g.moveTo(ox+run.x*s,oy+run.y*s);g.lineTo(ox+run.x*s+Math.cos(run.angle)*9,oy+run.y*s+Math.sin(run.angle)*9);g.stroke()}
+function frame(t){const dt=Math.min(.05,(t-last)/1000||0);last=t;if(run){update(dt);draw(t/1000)}requestAnimationFrame(frame)}
+function resize(){const r=canvas.getBoundingClientRect();width=Math.max(200,Math.round(r.width));height=Math.max(200,Math.round(r.height));const dpr=Math.min(devicePixelRatio||1,1.5);canvas.width=width*dpr;canvas.height=height*dpr;g.setTransform(dpr,0,0,dpr,0,0)}
+function aim(index){if(!checkActive())return;const p=positions[index];run.angle=Math.atan2(p.y-run.y,p.x-run.x);run.pitch=-.04;$('status').textContent='已轉向 '+String.fromCharCode(65+index)+'；確認答案後按射擊。若被石柱擋住，請先移動。'}
+document.querySelectorAll('[data-hold]').forEach(b=>{const key=b.dataset.hold;b.addEventListener('pointerdown',e=>{e.preventDefault();if(!checkActive())return;b.setPointerCapture(e.pointerId);keys.add(key);b.classList.add('held')});const release=()=>{keys.delete(key);b.classList.remove('held')};b.addEventListener('pointerup',release);b.addEventListener('pointercancel',release);b.addEventListener('lostpointercapture',release)});
+document.querySelectorAll('[data-aim]').forEach(b=>b.onclick=()=>aim(Number(b.dataset.aim)));
+function clearAimDrag(){drag=null;$('cannonDrag').classList.remove('dragging');$('cannonDrag').querySelector('span').textContent='✥ 拖曳炮身瞄準';}
+function beginAimDrag(e,cannon=false){if(!checkActive()||drag)return;e.preventDefault();drag={pointerId:e.pointerId,x:e.clientX,y:e.clientY,startX:e.clientX,startY:e.clientY,maxMove:0,cannon};e.currentTarget.setPointerCapture(e.pointerId);if(cannon){$('cannonDrag').classList.add('dragging');$('cannonDrag').querySelector('span').textContent='正在瞄準 · 放開不射擊';$('status').textContent='拖曳炮身調整準星，放開後按「射擊」。';}}
+function moveAimDrag(e){if(!drag||drag.pointerId!==e.pointerId||mode!=='play')return;e.preventDefault();const dx=e.clientX-drag.x,dy=e.clientY-drag.y;run.angle+=dx*.006;run.pitch=Math.max(-.23,Math.min(.23,run.pitch+dy*.002));drag.maxMove=Math.max(drag.maxMove,Math.hypot(e.clientX-drag.startX,e.clientY-drag.startY));drag.x=e.clientX;drag.y=e.clientY;}
+function endAimDrag(e){if(!drag||drag.pointerId!==e.pointerId)return;const tap=!drag.cannon&&drag.maxMove<8&&Math.hypot(e.clientX-drag.startX,e.clientY-drag.startY)<8;clearAimDrag();if(tap)shoot();}
+for(const [el,cannon] of [[canvas,false],[$('cannonDrag'),true]]){el.addEventListener('pointerdown',e=>beginAimDrag(e,cannon));el.addEventListener('pointermove',moveAimDrag);el.addEventListener('pointerup',endAimDrag);el.addEventListener('pointercancel',clearAimDrag);el.addEventListener('lostpointercapture',clearAimDrag);}
+
+window.addEventListener('keydown',e=>{const k=e.key.toLowerCase();if([' ','arrowup','arrowdown','arrowleft','arrowright'].includes(k)&&run)e.preventDefault();if(k==='enter'&&mode==='feedback'){e.preventDefault();advance();return}if($('modal').open)return;if(e.repeat&&[' ','1','2','3','4'].includes(k))return;if(k===' '){shoot();return}if(['1','2','3','4'].includes(k)){aim(Number(k)-1);return}if(mode==='play'&&['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright'].includes(k))keys.add(k)});window.addEventListener('keyup',e=>keys.delete(e.key.toLowerCase()));window.addEventListener('blur',()=>{keys.clear();clearAimDrag()});document.addEventListener('visibilitychange',()=>{keys.clear();if(document.hidden)clearAimDrag()});
+$('shoot').onclick=shoot;$('next').onclick=advance;$('hint').onclick=()=>{if(!checkActive()||run.answered)return;const q=BANK[run.ch][run.q];$('status').textContent='觀念提示：'+q.hints[Math.min(run.hint++,1)];$('hint').textContent=run.hint>=2?'提示已展開':'再看一層提示';$('hint').disabled=run.hint>=2};
+$('music').onclick=()=>{initAudio();musicOn=!musicOn;$('music').textContent='♫ 背景音樂 '+(musicOn?'開':'關');$('music').setAttribute('aria-pressed',String(musicOn))};$('fx').onclick=()=>{fxOn=!fxOn;$('fx').textContent='音效 '+(fxOn?'開':'關');$('fx').setAttribute('aria-pressed',String(fxOn))};
+$('full').onclick=()=>{if(!document.fullscreenElement){document.body.classList.add('fullscreen');document.documentElement.requestFullscreen?.().catch(()=>{})}else{document.exitFullscreen?.().catch(()=>{});document.body.classList.remove('fullscreen')}setTimeout(resize,100)};document.addEventListener('fullscreenchange',()=>{document.body.classList.toggle('fullscreen',Boolean(document.fullscreenElement));resize()});
+$('help').onclick=()=>dialog('大屏與鍵盤操作','<p>W/S 前後移動，A/D 橫向移動，左右方向鍵旋轉。用手指按住炮身的虛線區拖曳即可調整準星，放開不會射擊；再按射擊按鈕發射。也可拖曳場景瞄準。按住下方的大型方向按鈕也能移動與轉向。</p><p>1–4：轉向對應答案精靈（不會自動作答）。空白／射擊按鈕／輕點場景：發射能量球。準星變黃時代表瞄準精靈。射空不扣命；射錯扣1命並顯示解析。</p><p>每關10題、3分鐘、2條命。時間包含閱讀解析與操作說明；切到其他分頁也繼續計時。三關全通才成功。Enter 可在作答解析後繼續下一題。</p><p>音樂需在點擊進入關卡後由瀏覽器啟用；右上可分別關閉配樂與音效。</p>',[{text:'繼續',primary:true}]);
+$('home').onclick=()=>{keys.clear();dialog('返回選關？','<p>目前這一關會重新開始；已通過的其他關卡紀錄保留。倒數會持續，直到返回選關。</p>',[{text:'繼續訓練',primary:true},{text:'返回選關',fn:lobby}])};$('reset').onclick=()=>dialog('清除通關紀錄？','<p>將清除這個射擊版的三關最佳成績；其他遊戲不受影響。</p>',[{text:'保留紀錄',primary:true},{text:'確認清除',fn:()=>{saved={best:[null,null,null]};storeSave();lobby()}}]);
+$('modal').addEventListener('cancel',e=>{if(mode==='feedback'||mode==='result')e.preventDefault()});window.addEventListener('resize',resize);lobby();requestAnimationFrame(frame);
+</script></body></html>
